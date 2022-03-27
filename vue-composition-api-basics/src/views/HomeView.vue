@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-  import  { reactive, computed } from 'vue';
+  import  { reactive, computed, watch } from 'vue';
 
   const appTitle = 'A counter app';
 
@@ -36,6 +36,14 @@
       title: 'My counter'
     }
   );
+
+  // Watch the reactive data for changes
+  watch(() => counterData.count, (newCount, oldCount) => {
+    console.log(newCount, oldCount);
+    if(newCount === 20) {
+      alert('Way to go! You made to 20!')
+    }
+  })
 
   // Computed example, returns if the counter is odd or even
   const isOddOrEven = computed(() => {
