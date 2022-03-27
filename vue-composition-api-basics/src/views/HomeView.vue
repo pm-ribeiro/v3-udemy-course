@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <h1>
-      {{counterTitle}}
+      {{counterData.title}}
     </h1>
     <button class="btn" @click="decrement">-</button>
-    <span class="counter">{{counter}}</span>
+    <span class="counter">{{counterData.count}}</span>
     <button class="btn" @click="increment">+</button>
 
     <br>
@@ -13,26 +13,29 @@
 
     <div class="edit">
       <h4>Edit counter title</h4>
-      <input type="text" v-model="counterTitle">
+      <input type="text" v-model="counterData.title">
     </div>
   </div>
 </template>
 
 <script setup>
-  import  { ref } from 'vue';
+  import  { reactive } from 'vue';
 
-  const counter = ref(0),
-        counterTitle = ref('A title')
-
+  const counterData = reactive(
+    {
+      count: 0,
+      title: 'My counter'
+    }
+  );
   // Traditional way to declare a function
   function increment() {
-    return counter.value++;
+    return counterData.count++;
   }
 
   // Alternative way - using arrow function
-  const decrement = () => counter.value--;
+  const decrement = () => counterData.count--;
 
-  const reset = () => counter.value = 0;
+  const reset = () => counterData.count = 0;
 </script>
 
 
