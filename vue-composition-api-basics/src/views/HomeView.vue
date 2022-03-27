@@ -4,9 +4,13 @@
     <h3>
       {{counterData.title}}
     </h3>
-    <button class="btn" @click="decrement">-</button>
+    <button class="btn" @click="decrease(2)">-2</button>
+    <button class="btn" @click="decrease(1)">-</button>
+
     <span class="counter">{{counterData.count}}</span>
-    <button class="btn" @click="increment">+</button>
+
+    <button class="btn" @click="increase(1, $event)">+</button>
+    <button class="btn" @click="increase(2)">+2</button>
 
     <br>
 
@@ -31,12 +35,14 @@
     }
   );
   // Traditional way to declare a function
-  function increment() {
-    return counterData.count++;
+  function increase(amount, e) {
+    // Console log the event parameters
+    console.log(e);
+    return counterData.count += amount;
   }
 
   // Alternative way - using arrow function
-  const decrement = () => counterData.count--;
+  const decrease = (amount) => counterData.count -= amount;
 
   const reset = () => counterData.count = 0;
 </script>
