@@ -26,14 +26,30 @@
 </template>
 
 <script setup>
+/**
+ * Imports
+ */
+
   import  {
     reactive,
     computed,
-    watch
+    watch,
+    onMounted
   } from 'vue';
 
+  /**
+   * App title related code
+  */
   const appTitle = 'A counter app';
 
+  onMounted(() => {
+    console.log('onMounted')
+  })
+
+
+/**
+ * Counter
+ */
   const counterData = reactive(
     {
       count: 0,
@@ -69,6 +85,11 @@
   const decrease = (amount) => counterData.count -= amount;
 
   const reset = () => counterData.count = 0;
+
+  onMounted(() => {
+    console.log('onMounted counter')
+  })
+
 </script>
 
 
