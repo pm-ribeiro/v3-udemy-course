@@ -16,6 +16,8 @@
 
     <button class="btn" @click="reset">reset counter</button>
 
+    <p>This counter is {{isOddOrEven}}</p>
+
     <div class="edit">
       <h4>Edit counter title</h4>
       <input type="text" v-model="counterData.title">
@@ -24,7 +26,7 @@
 </template>
 
 <script setup>
-  import  { reactive } from 'vue';
+  import  { reactive, computed } from 'vue';
 
   const appTitle = 'A counter app';
 
@@ -34,6 +36,16 @@
       title: 'My counter'
     }
   );
+
+  // Computed example, returns if the counter is odd or even
+  const isOddOrEven = computed(() => {
+    if(counterData.count % 2 === 0) {
+      return 'is even';
+    }
+
+    return 'is odd';
+  })
+
   // Traditional way to declare a function
   function increase(amount, e) {
     // Console log the event parameters
