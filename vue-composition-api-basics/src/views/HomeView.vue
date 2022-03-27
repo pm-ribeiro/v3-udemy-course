@@ -37,6 +37,8 @@
     onMounted
   } from 'vue';
 
+  import vAutoFocus from '@/directives/vAutoFocus';
+
   /**
    * App title related code
   */
@@ -89,15 +91,6 @@
   onMounted(() => {
     console.log('onMounted counter')
   })
-
-/**
- * Directives
- */
-  const vAutoFocus = {
-    mounted: (el) => {
-      el.focus();
-    }
-  }
 
 </script>
 
