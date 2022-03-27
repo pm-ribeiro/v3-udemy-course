@@ -1,8 +1,10 @@
 /**
  * Directives
  */
-export const vAutoFocus = {
+const vAutoFocus = {
   mounted: (el) => {
     el.focus()
   }
-}
+};
+
+export default vAutoFocus;
