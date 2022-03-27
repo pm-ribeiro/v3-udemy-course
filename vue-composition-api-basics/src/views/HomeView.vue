@@ -29,9 +29,7 @@
   import  {
     reactive,
     computed,
-    watch,
-    onBeforeUpdate,
-    onUpdated
+    watch
   } from 'vue';
 
   const appTitle = 'A counter app';
@@ -71,15 +69,6 @@
   const decrease = (amount) => counterData.count -= amount;
 
   const reset = () => counterData.count = 0;
-
-  onBeforeUpdate(() => {
-    console.log('On bf update')
-  })
-
-  onUpdated(() => {
-    console.log('On updated')
-  })
-
 </script>
 
 
