@@ -30,10 +30,8 @@
     reactive,
     computed,
     watch,
-    onBeforeMount,
-    onMounted,
-    onBeforeUnmount,
-    onUnmounted,
+    onBeforeUpdate,
+    onUpdated
   } from 'vue';
 
   const appTitle = 'A counter app';
@@ -74,20 +72,12 @@
 
   const reset = () => counterData.count = 0;
 
-  onBeforeMount(() => {
-    console.log('On bf mount')
+  onBeforeUpdate(() => {
+    console.log('On bf update')
   })
 
-  onMounted(() => {
-    console.log('On mount')
-  })
-
-  onBeforeUnmount(() => {
-    console.log('On bf unmount')
-  })
-
-  onUnmounted(() => {
-    console.log('On bf unmount')
+  onUpdated(() => {
+    console.log('On updated')
   })
 
 </script>
