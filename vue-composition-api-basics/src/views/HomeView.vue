@@ -10,6 +10,11 @@
     <br>
 
     <button class="btn" @click="reset">reset counter</button>
+
+    <div class="edit">
+      <h4>Edit counter title</h4>
+      <input type="text" v-model="counterTitle">
+    </div>
   </div>
 </template>
 
@@ -42,4 +47,7 @@
   margin: 10px !important;
 }
 
+.edit {
+  margin: 20px;
+}
 </style>
