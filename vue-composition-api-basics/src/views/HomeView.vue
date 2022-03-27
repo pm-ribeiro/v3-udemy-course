@@ -10,33 +10,20 @@
   </div>
 </template>
 
-<script>
+<script setup>
   import  { ref } from 'vue';
 
-  export default {
-    // first way of using composition api
-    setup() {
-      const counter = ref(0)
+  const counter = ref(0)
 
-      // Traditional way to declare a function
-      function increment() {
-        return counter.value++;
-      }
-
-      // Alternative way - using arrow function
-      const decrement = () => counter.value--;
-
-      const reset = () => counter.value = 0;
-
-      // Must return all properties: variables, methods, etc...
-      return {
-        counter,
-        increment,
-        decrement,
-        reset
-      }
-    }
+  // Traditional way to declare a function
+  function increment() {
+    return counter.value++;
   }
+
+  // Alternative way - using arrow function
+  const decrement = () => counter.value--;
+
+  const reset = () => counter.value = 0;
 </script>
 
 
