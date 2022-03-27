@@ -26,7 +26,15 @@
 </template>
 
 <script setup>
-  import  { reactive, computed, watch } from 'vue';
+  import  {
+    reactive,
+    computed,
+    watch,
+    onBeforeMount,
+    onMounted,
+    onBeforeUnmount,
+    onUnmounted
+  } from 'vue';
 
   const appTitle = 'A counter app';
 
@@ -65,6 +73,23 @@
   const decrease = (amount) => counterData.count -= amount;
 
   const reset = () => counterData.count = 0;
+
+  onBeforeMount(() => {
+    console.log('On bf mount')
+  })
+
+  onMounted(() => {
+    console.log('On mount')
+  })
+
+  onBeforeUnmount(() => {
+    console.log('On bf unmount')
+  })
+
+  onUnmounted(() => {
+    console.log('On bf unmount')
+  })
+
 </script>
 
 
