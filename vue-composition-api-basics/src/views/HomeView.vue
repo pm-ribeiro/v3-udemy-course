@@ -34,8 +34,6 @@
     onMounted,
     onBeforeUnmount,
     onUnmounted,
-    onActivated,
-    onDeactivated,
   } from 'vue';
 
   const appTitle = 'A counter app';
@@ -90,14 +88,6 @@
 
   onUnmounted(() => {
     console.log('On bf unmount')
-  })
-
-  onActivated(() => {
-    console.log('onActivated')
-  })
-
-  onDeactivated(() => {
-    console.log('onDeactivated')
   })
 
 </script>
