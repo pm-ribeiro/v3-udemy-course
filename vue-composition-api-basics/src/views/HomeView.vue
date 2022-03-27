@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <h1>
+      {{counterTitle}}
+    </h1>
     <button class="btn" @click="decrement">-</button>
     <span class="counter">{{counter}}</span>
     <button class="btn" @click="increment">+</button>
@@ -13,7 +16,8 @@
 <script setup>
   import  { ref } from 'vue';
 
-  const counter = ref(0)
+  const counter = ref(0),
+        counterTitle = ref('A title')
 
   // Traditional way to declare a function
   function increment() {
