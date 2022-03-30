@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>{{appTitle}}</h2>
+    <h2 ref="appTitleRef">{{appTitle}}</h2>
     <h3>
       {{counterData.title}}
     </h3>
@@ -31,6 +31,7 @@
  */
 
   import  {
+    ref,
     reactive,
     computed,
     watch,
@@ -43,11 +44,11 @@
    * App title related code
   */
   const appTitle = 'A counter app';
+  const appTitleRef = ref(null);
 
   onMounted(() => {
-    console.log('onMounted')
+    console.log('appTitleRef.value', appTitleRef.value.offsetWidth)
   })
-
 
 /**
  * Counter
