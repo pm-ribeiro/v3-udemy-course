@@ -36,6 +36,7 @@ const showModal = ref(false);
   margin: auto;
   max-width: 50vh;
   max-height: 80vh;
+  border-radius: 4px;
 }
 
 .modal-overlay {
