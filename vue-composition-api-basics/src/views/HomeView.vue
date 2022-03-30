@@ -47,7 +47,7 @@
   const appTitleRef = ref(null);
 
   onMounted(() => {
-    console.log('appTitleRef.value', appTitleRef.value.offsetWidth)
+    console.log(`App title is ${appTitleRef.value.offsetWidth}px wide`)
   })
 
 /**
