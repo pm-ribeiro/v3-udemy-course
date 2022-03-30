@@ -3,20 +3,22 @@
     <h1>Modals</h1>
     <button  @click="showModal = true">Show modal</button>
 
-    <div class="modal-overlay" v-if="showModal">
-      <div class="modal">
-        <h2>This is a modal</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Assumenda debitis non accusantium facilis, placeat vel molestias totam, sit perferendis hic porro ad,
-          nostrum blanditiis dolore dolorum voluptatibus error ullam architecto.
-        </p>
+    <teleport to="body">
+      <div class="modal-overlay" v-if="showModal">
+        <div class="modal">
+          <h2>This is a modal</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Assumenda debitis non accusantium facilis, placeat vel molestias totam, sit perferendis hic porro ad,
+            nostrum blanditiis dolore dolorum voluptatibus error ullam architecto.
+          </p>
 
-        <button @click="showModal = false">
-          hide modal
-        </button>
+          <button @click="showModal = false">
+            hide modal
+          </button>
+        </div>
       </div>
-    </div>
+    </teleport>
   </div>
 </template>
 
