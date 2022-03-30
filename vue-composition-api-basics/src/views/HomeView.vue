@@ -35,7 +35,8 @@
     reactive,
     computed,
     watch,
-    onMounted
+    onMounted,
+    nextTick
   } from 'vue';
 
   import vAutoFocus from '@/directives/vAutoFocus';
@@ -78,10 +79,15 @@
   })
 
   // Traditional way to declare a function
-  function increase(amount, e) {
+  async function increase(amount, e) {
     // Console log the event parameters
     console.log(e);
-    return counterData.count += amount;
+    counterData.count += amount;
+
+    await nextTick(() => {
+      console.log('do something');
+    })
+    console.log('do something 2');
   }
 
   // Alternative way - using arrow function
