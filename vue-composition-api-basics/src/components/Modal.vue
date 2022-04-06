@@ -7,7 +7,7 @@
 
         <slot name="body" />
 
-        <button @click="$emit('closeModal')">
+        <button @click="close()">
           hide modal
         </button>
       </div>
@@ -31,6 +31,12 @@ console.log(props.title);
 /** emits */
 
 const emit = defineEmits(['closeModal']);
+
+
+/** handle close button */
+function close() {
+  emit('closeModal');
+}
 
 </script>
 
