@@ -6,9 +6,6 @@
       <slot name="title" />
         <slot />
 
-        <pre>
-          {{ $slots.title}}
-        </pre>
         <button @click="showModal = false">
           hide modal
         </button>
@@ -20,10 +17,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import {useSlots} from 'vue';
-const slots = useSlots();
 
-console.log(slots.title())
 
 /**
  * modals
