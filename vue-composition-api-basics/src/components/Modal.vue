@@ -3,8 +3,9 @@
     <div class="modal-overlay">
       <div class="modal">
 
-      <slot name="title" />
-        <slot />
+        <h2>{{title}}</h2>
+
+        <slot name="body" />
 
         <button @click="showModal = false">
           hide modal
@@ -16,13 +17,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+/**props */
 
-
-/**
- * modals
-*/
-const showModal = ref(false);
+const props = defineProps({
+  title: {
+    type: String,
+    default: 'A title',
+  },
+});
+// accessing props
+console.log(props.title);
 
 </script>
 
