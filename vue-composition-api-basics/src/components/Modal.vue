@@ -7,7 +7,7 @@
 
         <slot name="body" />
 
-        <button @click="showModal = false">
+        <button @click="$emit('closeModal')">
           hide modal
         </button>
       </div>
@@ -27,6 +27,10 @@ const props = defineProps({
 });
 // accessing props
 console.log(props.title);
+
+/** emits */
+
+const emit = defineEmits(['closeModal']);
 
 </script>
 

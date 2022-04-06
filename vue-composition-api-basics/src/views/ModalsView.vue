@@ -5,6 +5,7 @@
     <Modal
       v-if="showModal"
       title="Modal title"
+      @closeModal="showModal = false"
     >
       <template #body>
         <p>
