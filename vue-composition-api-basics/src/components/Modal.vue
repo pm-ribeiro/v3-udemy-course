@@ -1,6 +1,6 @@
 <template>
   <teleport to="body">
-    <div class="modal-overlay">
+    <div class="modal-overlay" v-if="modelValue">
       <div class="modal">
 
         <h2>{{title}}</h2>
@@ -20,6 +20,11 @@
 /**props */
 
 const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   title: {
     type: String,
     default: 'A title',
@@ -30,12 +35,12 @@ console.log(props.title);
 
 /** emits */
 
-const emit = defineEmits(['closeModal']);
+const emit = defineEmits(['update:modelValue']);
 
 
 /** handle close button */
 function close() {
-  emit('closeModal');
+  emit('update:modelValue', false);
 }
 
 </script>
