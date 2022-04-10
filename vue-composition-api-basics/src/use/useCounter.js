@@ -32,10 +32,10 @@ export function useCounter() {
   // Computed example, returns if the counter is odd or even
   const isOddOrEven = computed(() => {
     if(counterData.count % 2 === 0) {
-      return 'is even';
+      return 'even';
     }
 
-    return 'is odd';
+    return 'odd';
   })
 
   // Traditional way to declare a function

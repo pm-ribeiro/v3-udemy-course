@@ -13,6 +13,15 @@
     </ul>
 
     <textarea v-auto-focus/>
+
+    <button
+      class="counter-button"
+      @click="increase(1)"
+
+      :class="{'yellow' : isOddOrEven === 'odd'}"
+    >
+      {{counterData.count}}
+    </button>
   </div>
 </template>
 
@@ -24,6 +33,13 @@
   import  {
     reactive,
   } from 'vue';
+
+  import { useCounter } from '@/use/useCounter';
+
+  const {
+    counterData, increase, isOddOrEven
+  } = useCounter();
+
 
   const posts = reactive(
     [
@@ -38,5 +54,14 @@
 <style scoped>
 ul {
   margin-bottom: 30px;
+}
+
+.counter-button {
+  font-size: 32px;
+  background-color: pink;
+}
+
+.counter-button.yellow {
+  background-color: yellow;
 }
 </style>
