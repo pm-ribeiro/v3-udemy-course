@@ -7,6 +7,16 @@ export const useCounterStore = defineStore({
     title: 'My counter title - PINIA'
   }),
 
+  getters: {
+    isOddOrEven: (state) => {
+      if(state.count % 2 === 0) {
+        return 'even';
+      }
+
+      return 'odd';
+    }
+  },
+
   actions: {
     increase(payload) {
       this.count += payload;
