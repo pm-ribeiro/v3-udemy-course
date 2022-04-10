@@ -10,6 +10,20 @@ import  {
   nextTick
 } from 'vue';
 
+
+/**
+ * para que o counter tenha um valor global
+ * é necessário declarar a propriedade fora da escopo da função
+ */
+
+// const counterData = reactive(
+//   {
+//     count: 0,
+//     title: 'My counter'
+//   }
+// );
+
+
 export function useCounter() {
   /**
    * Counter
