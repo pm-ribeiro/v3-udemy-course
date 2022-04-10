@@ -1,7 +1,15 @@
 <template>
   <div class="user-data">
     <h3>
-      {{user.name}} @{{user.username}}
+      {{user.name}} @{{user.username}} <br>
+      Network status:
+      <span
+        class="network-satus"
+        :class="
+          online ? 'network-satus--online' : 'network-satus--offline'
+        ">
+        {{online ? 'online' : 'offline'}}
+      </span>
     </h3>
   </div>
   <nav>
@@ -15,7 +23,7 @@
 </template>
 
 <script setup>
-
+  import { useOnline } from '@vueuse/core'
   import { reactive, provide } from 'vue';
 
   /** user data */
@@ -27,6 +35,10 @@
   )
 
   provide('userData', user);
+
+  /** online status */
+  const online = useOnline();
+
 </script>
 
 <style>
@@ -96,6 +108,19 @@ nav a:first-of-type {
   font-weight: bold;
   padding: 8px;
   border-radius: 4px;
+}
+
+
+.network-satus {
+  font-weight: bold;
+}
+
+.network-satus--online {
+  color: green;
+}
+
+.network-satus--offline {
+  color: red;
 }
 
 </style>
