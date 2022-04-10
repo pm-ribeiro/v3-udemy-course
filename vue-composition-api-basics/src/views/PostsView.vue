@@ -16,11 +16,11 @@
 
     <button
       class="counter-button"
-      @click="increase(1)"
+      @click="counter.increase(1)"
 
-      :class="{'yellow' : isOddOrEven === 'odd'}"
+      :class="{'yellow' : counter.isOddOrEven === 'odd'}"
     >
-      {{counterData.count}}
+      {{counter.count}}
     </button>
   </div>
 </template>
@@ -33,6 +33,7 @@
   import  {
     reactive,
   } from 'vue';
+  import { useCounterStore } from '@/stores/counter';
 
   const posts = reactive(
     [
@@ -41,6 +42,9 @@
       { id: '3', title: 'Post 3' },
     ]
   )
+
+  /** counter */
+  const counter = useCounterStore();
 
 </script>
 
