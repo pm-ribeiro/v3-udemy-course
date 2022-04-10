@@ -34,13 +34,6 @@
     reactive,
   } from 'vue';
 
-  import { useCounter } from '@/use/useCounter';
-
-  const {
-    counterData, increase, isOddOrEven
-  } = useCounter();
-
-
   const posts = reactive(
     [
       { id: '1', title: 'Post 1' },

@@ -2,25 +2,25 @@
   <div class="home">
     <h2 ref="appTitleRef">{{appTitle}}</h2>
     <h3>
-      {{counterData.title}}
+      {{counter.title}}
     </h3>
-    <button class="btn" @click="decrease(2)">-2</button>
-    <button class="btn" @click="decrease(1)">-</button>
+    <button class="btn" @click="counter.decrease(2)">-2</button>
+    <button class="btn" @click="counter.decrease(1)">-</button>
 
-    <span class="counter">{{counterData.count}}</span>
+    <span class="counter">{{counter.count}}</span>
 
-    <button class="btn" @click="increase(1, $event)">+</button>
-    <button class="btn" @click="increase(2)">+2</button>
+    <button class="btn" @click="counter.increase(1)">+</button>
+    <button class="btn" @click="counter.increase(2)">+2</button>
 
     <br>
 
-    <button class="btn" @click="reset">reset counter</button>
+    <button class="btn" @click="counter.reset">reset counter</button>
 
-    <p>This counter is {{isOddOrEven}}</p>
+    <p>This counter is {{counter.isOddOrEven}}</p>
 
     <div class="edit">
       <h4>Edit counter title</h4>
-      <input type="text" v-model="counterData.title" v-auto-focus >
+      <input type="text" v-model="counter.title" v-auto-focus >
     </div>
   </div>
 </template>
@@ -37,16 +37,7 @@
 
   import vAutoFocus from '@/directives/vAutoFocus';
 
-  import { useCounter } from '@/use/useCounter';
-
-  const {
-    counterData,
-    increase,
-    decrease,
-    reset,
-    isOddOrEven
-  } = useCounter();
-
+  import { useCounterStore } from '@/stores/counter';
 
   /**
    * App title related code
@@ -58,6 +49,9 @@
     console.log(`App title is ${appTitleRef.value.offsetWidth}px wide`)
   })
 
+  /** counter */
+
+  const counter = useCounterStore();
 
 </script>
 
