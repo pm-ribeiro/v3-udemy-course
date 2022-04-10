@@ -1,8 +1,17 @@
 <template>
   <div class="modals">
     <h1>Modals</h1>
+
+    <div>
+      <label for="">
+        Show dark modal
+        <input type="checkbox" v-model="showDarkModals">
+      </label>
+    </div>
+
     <button  @click="showModal = true">Show modal</button>
-    <Modal
+    <component
+      :is="modalComponent"
       v-model="showModal"
       title="Modal title"
     >
@@ -13,16 +22,24 @@
           nostrum blanditiis dolore dolorum voluptatibus error ullam architecto.
         </p>
       </template>
-    </Modal>
+    </component>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import Modal from '@/components/Modal.vue';
+import ModalDark from '@/components/ModalDark.vue';
+import { computed } from '@vue/reactivity';
 /**
  * modals
 */
+const showDarkModals = ref(false);
 const showModal = ref(false);
+
+const modalComponent = computed( () => {
+    return showDarkModals.value ? ModalDark : Modal;
+  });
+
 
 </script>

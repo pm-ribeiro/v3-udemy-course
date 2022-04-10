@@ -47,7 +47,7 @@ function close() {
 
 <style scoped>
 .modal {
-  background-color: white;
+  background-color: rgb(122, 122, 225);
   padding: 12px;
   margin: auto;
   max-width: 50vh;
