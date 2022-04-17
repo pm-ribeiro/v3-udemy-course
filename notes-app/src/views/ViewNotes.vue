@@ -6,13 +6,13 @@
     </p>
     <NewNote
       @addNewNote="addNewNote($event)"
-    ></NewNote>
+    />
     <NoteCard
       class="mt-5"
       v-for="note in notes"
       :key="note.id"
       :note="note"
-    ></NoteCard>
+    />
   </div>
 </template>
 

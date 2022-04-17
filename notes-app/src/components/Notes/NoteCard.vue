@@ -2,7 +2,16 @@
   <div class="card">
     <div class="card-content">
       <div class="content">
-        {{ note.content }}
+        <p>
+          {{ note.content }}
+        </p>
+
+        <p class="has-text-right has-text-grey-light">
+          <small>
+            {{characterLength}}
+          </small>
+        </p>
+
       </div>
     </div>
     <footer class="card-footer">
@@ -30,6 +39,9 @@
 
 <script setup>
 
+import { computed } from "vue";
+
+/** props */
 const props = defineProps({
   note: {
     type: Object,
@@ -48,6 +60,18 @@ const editNote = () => {
 const saveEditedNote = () => {
   console.log('saveEditedNote')
 }
+
+
+const characterLength = computed(
+  () => {
+    let noteLength = props.note.content.length;
+    let description =
+      noteLength > 1 ? " characters" : " character";
+    return `
+      ${noteLength} ${description}
+    `;
+  }
+)
 
 </script>
 
