@@ -7,19 +7,19 @@
     <NewNote
       @addNewNote="addNewNote($event)"
     ></NewNote>
-    <NotesCardVue
+    <NoteCard
       class="mt-5"
       v-for="note in notes"
       :key="note.id"
       :note="note"
-    ></NotesCardVue>
+    ></NoteCard>
   </div>
 </template>
 
 <script setup>
 
-import NotesCardVue from '../components/NotesCard.vue';
-import NewNote from '../components/NewNote.vue';
+import NoteCard from '@/components/Notes/NoteCard.vue';
+import NewNote from '@/components/Notes/NewNote.vue';
 
 
 import { ref } from "vue";
