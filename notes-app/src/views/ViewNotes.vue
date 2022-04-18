@@ -44,8 +44,6 @@ function addNewNote(newNote){
     id: currentDate.toString(),
     content: newNote,
   });
-
-  console.log(notes.value);
 }
 
 const deleteNote = (noteId) => {
