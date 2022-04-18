@@ -41,6 +41,9 @@
 
 import { computed } from "vue";
 
+/** emits */
+const emit = defineEmits(["deleteNote"]);
+
 /** props */
 const props = defineProps({
   note: {
@@ -49,8 +52,8 @@ const props = defineProps({
   }
 })
 
-const deleteNote = () => {
-  console.log('deleteNote')
+const deleteNote = (noteId) => {
+  emit("deleteNote", noteId);
 }
 
 const editNote = () => {

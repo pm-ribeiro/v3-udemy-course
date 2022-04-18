@@ -12,6 +12,7 @@
       v-for="note in notes"
       :key="note.id"
       :note="note"
+      @deleteNote="deleteNote($event)"
     />
   </div>
 </template>
@@ -45,6 +46,10 @@ function addNewNote(newNote){
   });
 
   console.log(notes.value);
+}
+
+const deleteNote = (noteId) => {
+  notes.value = notes.value.filter(note => note.id !== noteId);
 }
 
 </script>
