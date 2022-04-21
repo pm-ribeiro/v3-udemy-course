@@ -1,15 +1,12 @@
 <template>
   <div class="notes">
-    <!-- remove this p when ready -->
-    <p>
-      {{notes}}
-    </p>
+
     <NewNote
       @addNewNote="addNewNote($event)"
     />
     <NoteCard
       class="mt-5"
-      v-for="note in notes"
+      v-for="note in storeNotes.notes"
       :key="note.id"
       :note="note"
       @deleteNote="deleteNote($event)"
@@ -19,35 +16,16 @@
 
 <script setup>
 
+/** imports */
 import NoteCard from '@/components/Notes/NoteCard.vue';
 import NewNote from '@/components/Notes/NewNote.vue';
+import {useStoreNotes} from '@/stores/storeNotes';
 
+/** store */
+const storeNotes = useStoreNotes();
 
-import { ref } from "vue";
-
-/** Notes */
-const notes = ref([
-  {
-    id: 1,
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  },
-  {
-    id: 2,
-    content: 'shorter note',
-  },
-])
-
-function addNewNote(newNote){
-  let currentDate = new Date().getTime();
-
-  notes.value.unshift({
-    id: currentDate.toString(),
-    content: newNote,
-  });
-}
-
-const deleteNote = (noteId) => {
-  notes.value = notes.value.filter(note => note.id !== noteId);
-}
+// const deleteNote = (noteId) => {
+//   notes.value = notes.value.filter(note => note.id !== noteId);
+// }
 
 </script>

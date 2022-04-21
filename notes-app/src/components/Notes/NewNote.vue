@@ -29,6 +29,10 @@
 <script setup>
 /** imports */
 import { ref } from "vue";
+import {useStoreNotes} from '@/stores/storeNotes';
+
+/** store */
+const storeNotes = useStoreNotes();
 
 /** emits */
 const emit = defineEmits(["newNote"]);
@@ -40,7 +44,7 @@ const newNoteRef = ref(null);
 function addNewNote() {
   if(!newNote.value) return;
 
-  emit("addNewNote", newNote.value);
+  storeNotes.addNote(newNote.value);
 
   newNote.value = "";
 
