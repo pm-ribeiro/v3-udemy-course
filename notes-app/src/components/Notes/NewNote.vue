@@ -34,9 +34,6 @@ import {useStoreNotes} from '@/stores/storeNotes';
 /** store */
 const storeNotes = useStoreNotes();
 
-/** emits */
-const emit = defineEmits(["newNote"]);
-
 /** new note */
 const newNote = ref("");
 const newNoteRef = ref(null);

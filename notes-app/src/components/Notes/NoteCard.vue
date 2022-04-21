@@ -62,7 +62,6 @@ const saveEditedNote = () => {
   console.log('saveEditedNote')
 }
 
-
 const characterLength = computed(
   () => {
     let noteLength = props.note.content.length;
@@ -75,7 +74,3 @@ const characterLength = computed(
 )
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>
