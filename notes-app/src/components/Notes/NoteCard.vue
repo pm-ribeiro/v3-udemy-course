@@ -27,12 +27,6 @@
       >
         Edit
       </a>
-      <a
-        @click.prevent="saveEditedNote(note.id)"
-        class="card-footer-item"
-      >
-        Save
-      </a>
     </footer>
   </div>
 </template>
@@ -56,10 +50,6 @@ const props = defineProps({
 
 const editNote = () => {
   console.log('editNote')
-}
-
-const saveEditedNote = () => {
-  console.log('saveEditedNote')
 }
 
 const characterLength = computed(
