@@ -21,12 +21,12 @@
       >
         Delete
       </a>
-      <a 
-        @click.prevent="editNote(note.id)"
+      <RouterLink
+        :to="`/edit-note/${note.id}`"
         class="card-footer-item"
       >
         Edit
-      </a>
+      </RouterLink>
     </footer>
   </div>
 </template>
@@ -47,10 +47,6 @@ const props = defineProps({
     required: true
   }
 })
-
-const editNote = () => {
-  console.log('editNote')
-}
 
 const characterLength = computed(
   () => {

@@ -6,21 +6,15 @@
         <textarea
           class="textarea"
           placeholder="Type a new note..."
-          v-model="newNote"
+          v-model="modelValue"
           ref="newNoteRef"
+          @input="$emit('update:modelValue', modelValue)"
         />
       </div>
     </div>
-
     <div class="field is-grouped is-grouped-right">
       <div class="control">
-        <button
-          class="button is-link has-background-primary"
-          :disabled="!newNote"
-          @click="addNewNote"
-        >
-          Save
-        </button>
+        <slot name="buttons" />
       </div>
     </div>
   </div>
@@ -34,19 +28,29 @@ import {useStoreNotes} from '@/stores/storeNotes';
 /** store */
 const storeNotes = useStoreNotes();
 
+/** emits */
+const emit = defineEmits(['update:modelValue']);
+
+/** props */
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true
+  }
+})
+
 /** new note */
-const newNote = ref("");
 const newNoteRef = ref(null);
 
-function addNewNote() {
-  if(!newNote.value) return;
+// function addNewNote() {
+//   if(!newNote.value) return;
 
-  storeNotes.addNote(newNote.value);
+//   storeNotes.addNote(newNote.value);
 
-  newNote.value = "";
+//   newNote.value = "";
 
-  newNoteRef.value.focus();
-}
+//   newNoteRef.value.focus();
+// }
 
 </script>
 
