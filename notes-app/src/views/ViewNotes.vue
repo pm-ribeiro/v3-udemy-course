@@ -24,8 +24,4 @@ import {useStoreNotes} from '@/stores/storeNotes';
 /** store */
 const storeNotes = useStoreNotes();
 
-// const deleteNote = (noteId) => {
-//   notes.value = notes.value.filter(note => note.id !== noteId);
-// }
-
 </script>

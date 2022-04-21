@@ -16,7 +16,7 @@
     </div>
     <footer class="card-footer">
       <a
-        @click.prevent="deleteNote(note.id)"
+        @click.prevent="storeNotes.deleteNote(note.id)"
         class="card-footer-item"
       >
         Delete
@@ -39,10 +39,12 @@
 
 <script setup>
 
+/** imports */
 import { computed } from "vue";
+import {useStoreNotes} from '@/stores/storeNotes';
 
-/** emits */
-const emit = defineEmits(["deleteNote"]);
+/** store */
+const storeNotes = useStoreNotes();
 
 /** props */
 const props = defineProps({
@@ -51,10 +53,6 @@ const props = defineProps({
     required: true
   }
 })
-
-const deleteNote = (noteId) => {
-  emit("deleteNote", noteId);
-}
 
 const editNote = () => {
   console.log('editNote')
