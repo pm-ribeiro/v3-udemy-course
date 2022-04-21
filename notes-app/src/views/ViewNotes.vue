@@ -2,6 +2,7 @@
   <div class="notes">
 
     <AddEditNote
+      ref="addEditNoteRef"
       v-model="newNote"
     >
       <template #buttons>
@@ -14,10 +15,6 @@
         </button>
       </template>
     </AddEditNote>
-
-    <p>
-      {{newNote}}
-    </p>
 
     <NoteCard
       class="mt-5"
@@ -41,5 +38,16 @@ import {useStoreNotes} from '@/stores/storeNotes';
 const storeNotes = useStoreNotes();
 
 const newNote = ref('ABC...');
+const addEditNoteRef = ref(null);
+
+function addNewNote() {
+  if(!newNote.value) return;
+
+  storeNotes.addNote(newNote.value);
+
+  newNote.value = "";
+
+  addEditNoteRef.value.focusTextarea();
+}
 
 </script>

@@ -7,7 +7,7 @@
           class="textarea"
           placeholder="Type a new note..."
           v-model="modelValue"
-          ref="newNoteRef"
+          ref="textAreaRef"
           @input="$emit('update:modelValue', modelValue)"
         />
       </div>
@@ -23,10 +23,6 @@
 <script setup>
 /** imports */
 import { ref } from "vue";
-import {useStoreNotes} from '@/stores/storeNotes';
-
-/** store */
-const storeNotes = useStoreNotes();
 
 /** emits */
 const emit = defineEmits(['update:modelValue']);
@@ -39,21 +35,14 @@ const props = defineProps({
   }
 })
 
-/** new note */
-const newNoteRef = ref(null);
+const textAreaRef = ref(null);
 
-// function addNewNote() {
-//   if(!newNote.value) return;
+const focusTextarea = () => {
+  textAreaRef.value.focus();
+}
 
-//   storeNotes.addNote(newNote.value);
-
-//   newNote.value = "";
-
-//   newNoteRef.value.focus();
-// }
+defineExpose({
+  focusTextarea
+})
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>
