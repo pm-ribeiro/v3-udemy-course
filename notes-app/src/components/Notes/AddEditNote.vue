@@ -1,11 +1,16 @@
 <template>
-  <div class="card p-4">
+  <div
+    class="card p-4"
+    :class="setBackgroundColor"
+  >
     <div class="field">
-      <label class="label">New note</label>
+      <label class="label">
+        {{label}}
+      </label>
       <div class="control">
         <textarea
           class="textarea"
-          placeholder="Type a new note..."
+          :placeholder="placeholder"
           v-model="modelValue"
           ref="textAreaRef"
           @input="$emit('update:modelValue', modelValue)"
@@ -23,6 +28,7 @@
 <script setup>
 /** imports */
 import { ref } from "vue";
+import { computed } from "vue";
 
 /** emits */
 const emit = defineEmits(['update:modelValue']);
@@ -32,6 +38,18 @@ const props = defineProps({
   modelValue: {
     type: String,
     required: true
+  },
+  backgroundColor: {
+    type: String,
+    default: ""
+  },
+  placeholder: {
+    type: String,
+    default: "Type a new note..."
+  },
+  label: {
+    type: String,
+    default: "New note"
   }
 })
 
@@ -44,5 +62,14 @@ const focusTextarea = () => {
 defineExpose({
   focusTextarea
 })
+
+
+const setBackgroundColor = computed(
+  () => {
+    if(props.backgroundColor) {
+      return `has-background-${props.backgroundColor}-dark`;
+    }
+  }
+);
 
 </script>

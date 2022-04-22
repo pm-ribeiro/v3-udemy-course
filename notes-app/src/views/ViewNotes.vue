@@ -37,7 +37,7 @@ import {useStoreNotes} from '@/stores/storeNotes';
 /** store */
 const storeNotes = useStoreNotes();
 
-const newNote = ref('ABC...');
+const newNote = ref('');
 const addEditNoteRef = ref(null);
 
 function addNewNote() {
