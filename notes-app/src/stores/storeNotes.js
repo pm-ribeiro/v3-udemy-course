@@ -3,18 +3,26 @@ import { defineStore } from 'pinia'
 // useStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
 export const useStoreNotes = defineStore('storeNotes', {
-  state: () => ({
-    notes: [
-      {
-        id: 1,
-        content: 'First note',
-      },
-      {
-        id: 2,
-        content: 'shorter note',
-      }
-    ]
-  }),
+  state: () => {
+    return {
+      notes: [
+        {
+          id: '1',
+          content: 'First note',
+        },
+        {
+          id: '2',
+          content: 'shorter note',
+        }
+      ]
+    }
+  },
+
+  getters: {
+    getNoteContent: (state) => {
+      return (noteId) => state.notes.find((note) => note.id === noteId).content
+    },
+  },
 
   actions: {
     addNote(noteContent) {
