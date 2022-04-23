@@ -29,7 +29,7 @@
 <script setup>
 
 /** imports */
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import NoteCard from '@/components/Notes/NoteCard.vue';
 import AddEditNote from '@/components/Notes/AddEditNote.vue';
 import {useStoreNotes} from '@/stores/storeNotes';
@@ -49,5 +49,11 @@ function addNewNote() {
 
   addEditNoteRef.value.focusTextarea();
 }
+
+watch(newNote, (newValue, oldValue) => {
+  if(newValue.length === 140) {
+    alert('Only 140 characters allowed');
+  }
+})
 
 </script>
