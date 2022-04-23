@@ -25,10 +25,11 @@
         id="navbarBasicExample"
         class="navbar-menu"
         :class="{ 'is-active': showMobileNav }"
+        v-on-click-outside="closeMobileNav"
       >
         <div class="navbar-end">
           <router-link
-            @click="showMobileNav = false"
+            @click="closeMobileNav"
             to="/"
             class="navbar-item"
             active-class="is-active"
@@ -37,7 +38,7 @@
           </router-link>
 
           <router-link
-            @click="showMobileNav = false"
+            @click="closeMobileNav"
             to="/stats"
             class="navbar-item"
             active-class="is-active"
@@ -53,10 +54,15 @@
 <script setup>
 /** imports */
 import { ref } from 'vue';
-
+import { vOnClickOutside } from '@vueuse/components'
 
 /** mobile nav */
-const showMobileNav = ref(false);
+const showMobileNav = ref(false),
+      navBarMenuRef = ref(null);
+
+function closeMobileNav() {
+  showMobileNav.value = false;
+}
 
 </script>
 
