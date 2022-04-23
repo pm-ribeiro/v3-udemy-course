@@ -14,6 +14,7 @@
           v-model="modelValue"
           ref="textAreaRef"
           @input="$emit('update:modelValue', modelValue)"
+          v-autofocus
         />
       </div>
     </div>
@@ -29,6 +30,7 @@
 /** imports */
 import { ref } from "vue";
 import { computed } from "vue";
+import vAutofocus from '@/directives/vAutofocus';
 
 /** emits */
 const emit = defineEmits(['update:modelValue']);
