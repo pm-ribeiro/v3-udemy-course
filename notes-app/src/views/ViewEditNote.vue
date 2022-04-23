@@ -10,7 +10,7 @@
   >
     <template #buttons>
       <button
-        class="button is-link has-background-is-light"
+        class="button is-link has-background-is-light mr-3"
         @click="$router.push('/')"
       >
         Cancel
@@ -18,6 +18,7 @@
       <button
         class="button is-link has-background-link"
         :disabled="!noteContent"
+        @click="handleSaveNote()"
       >
         Save
       </button>
@@ -40,5 +41,9 @@ const route = useRoute();
 const noteContent = ref('');
 
 noteContent.value = storeNotes.getNoteContent(route.params.id);
+
+function handleSaveNote() {
+  storeNotes.updateNote(route.params.id, noteContent.value);
+}
 
 </script>
