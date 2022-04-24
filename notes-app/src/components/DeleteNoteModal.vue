@@ -38,7 +38,7 @@
 <script setup>
 /** imports */
 import { vOnClickOutside } from '@vueuse/components'
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 /** emits */
 const emit = defineEmits(['update:modelValue']);
@@ -48,9 +48,25 @@ const props = defineProps({
     type: Boolean,
     default: false
   }
-})
+});
 
 const closeModal = () => {
-  emit('update:modelValue', false)
+  emit('update:modelValue', false);
 }
+
+/** keyboard control */
+const handleKeydown = (e) => {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('keydown', handleKeydown)
+});
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleKeydown)
+});
+
 </script>
