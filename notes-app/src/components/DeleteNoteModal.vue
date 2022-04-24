@@ -1,7 +1,10 @@
 <template>
-  <div class="modal is-active">
+  <div class="modal is-active p-4">
     <div class="modal-background"></div>
-    <div class="modal-card">
+    <div
+      class="modal-card"
+      v-on-click-outside="closeModal"
+    >
       <header class="modal-card-head">
         <p class="modal-card-title">
           Alert!
@@ -9,7 +12,7 @@
         <button
           class="delete"
           aria-label="close"
-          @click="close"
+          @click="closeModal"
         ></button>
       </header>
       <section class="modal-card-body">
@@ -20,7 +23,7 @@
       <footer class="modal-card-foot is-justify-content-flex-end">
         <button
           class="button"
-          @click="close"
+          @click="closeModal"
         >
           Cancel
         </button>
@@ -33,6 +36,10 @@
 </template>
 
 <script setup>
+/** imports */
+import { vOnClickOutside } from '@vueuse/components'
+import { ref } from 'vue';
+
 /** emits */
 const emit = defineEmits(['update:modelValue']);
 
@@ -43,8 +50,7 @@ const props = defineProps({
   }
 })
 
-const close = () => {
+const closeModal = () => {
   emit('update:modelValue', false)
 }
-
 </script>
