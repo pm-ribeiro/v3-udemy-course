@@ -27,7 +27,10 @@
         >
           Cancel
         </button>
-        <button class="button is-danger">
+        <button
+          class="button is-danger"
+          @click="storeNotes.deleteNote(noteId)"
+        >
           Confirm
         </button>
       </footer>
@@ -37,16 +40,24 @@
 
 <script setup>
 /** imports */
-import { vOnClickOutside } from '@vueuse/components'
+import { vOnClickOutside } from '@vueuse/components';
 import { onMounted, onUnmounted, ref } from 'vue';
+import { useStoreNotes } from '../stores/storeNotes';
 
 /** emits */
 const emit = defineEmits(['update:modelValue']);
+
+/** store */
+const storeNotes = useStoreNotes();
 
 const props = defineProps({
   modelValue: {
     type: Boolean,
     default: false
+  },
+  noteId: {
+    type: String,
+    required: true
   }
 });
 
