@@ -30,6 +30,17 @@
         @deleteNote="deleteNote($event)"
       />
     </template>
+
+    <div v-if="!storeNotes.notes.length">
+      <p
+        class="
+          is-size-4 has-text-centered
+          has-text-grey-light is-family-monospace py-6
+        "
+      >
+        No notes yet.
+      </p>
+    </div>
   </div>
 </template>
 
