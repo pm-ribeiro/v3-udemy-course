@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore"
 import {db} from '@/js/firebase'
+
+const notesCollectionRef = collection(db, "notes");
 
 // useStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
@@ -36,7 +38,7 @@ export const useStoreNotes = defineStore('storeNotes', {
 
   actions: {
     async getNotes() {
-      onSnapshot(collection(db, "notes"), (querySnapshot) => {
+      onSnapshot(notesCollectionRef, (querySnapshot) => {
         let notes = []
         querySnapshot.forEach((doc) => {
           let note = {
@@ -50,19 +52,19 @@ export const useStoreNotes = defineStore('storeNotes', {
       });
     },
 
-    addNote(noteContent) {
-      let currentDate = new Date().getTime();
+    async addNote(noteContent) {
+      let currentDate = new Date().getTime(),
+        id = currentDate.toString();
 
-      let newNote = {
-        id: currentDate.toString(),
+      // Add a new document in collection "cities"
+      await setDoc(doc(notesCollectionRef, id), {
         content: noteContent,
-      }
+      });
 
-      this.notes.unshift(newNote);
     },
 
-    deleteNote(noteId) {
-      this.notes = this.notes.filter(note => note.id !== noteId);
+    async deleteNote(noteId) {
+      await deleteDoc(doc(notesCollectionRef, noteId));
     },
 
     updateNote(id, content) {
