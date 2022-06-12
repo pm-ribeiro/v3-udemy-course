@@ -16,13 +16,20 @@
       </template>
     </AddEditNote>
 
-    <NoteCard
-      class="mt-5"
-      v-for="note in storeNotes.notes"
-      :key="note.id"
-      :note="note"
-      @deleteNote="deleteNote($event)"
+    <progress
+      v-if="!storeNotes.notesLoaded"
+      class="progress is-small is-primary" max="100"
     />
+
+    <template v-else>
+      <NoteCard
+        class="mt-5"
+        v-for="note in storeNotes.notes"
+        :key="note.id"
+        :note="note"
+        @deleteNote="deleteNote($event)"
+      />
+    </template>
   </div>
 </template>
 
