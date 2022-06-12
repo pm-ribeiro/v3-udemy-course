@@ -1,24 +1,27 @@
 import { defineStore } from 'pinia'
-import { collection, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore"
+import {
+  collection,
+  onSnapshot,
+  doc,
+  setDoc,
+  deleteDoc,
+  updateDoc,
+  query,
+  orderBy,
+  addDoc
+} from "firebase/firestore"
 import {db} from '@/js/firebase'
 
 const notesCollectionRef = collection(db, "notes");
+const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
+;
 
 // useStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
 export const useStoreNotes = defineStore('storeNotes', {
   state: () => {
     return {
-      notes: [
-        // {
-        //   id: '1',
-        //   content: 'First note',
-        // },
-        // {
-        //   id: '2',
-        //   content: 'shorter note',
-        // }
-      ]
+      notes: []
     }
   },
 
@@ -38,7 +41,7 @@ export const useStoreNotes = defineStore('storeNotes', {
 
   actions: {
     async getNotes() {
-      onSnapshot(notesCollectionRef, (querySnapshot) => {
+      onSnapshot(notesCollectionQuery, (querySnapshot) => {
         let notes = []
         querySnapshot.forEach((doc) => {
           let note = {
@@ -52,13 +55,13 @@ export const useStoreNotes = defineStore('storeNotes', {
       });
     },
 
-    async addNote(noteContent) {
-      let currentDate = new Date().getTime(),
-        id = currentDate.toString();
+    async addNote(content) {
+      const currentDate = new Date().getTime(),
+        date = currentDate.toString();
 
-      // Add a new document in collection "cities"
-      await setDoc(doc(notesCollectionRef, id), {
-        content: noteContent,
+      await addDoc(notesCollectionRef, {
+        date,
+        content
       });
 
     },
@@ -67,9 +70,10 @@ export const useStoreNotes = defineStore('storeNotes', {
       await deleteDoc(doc(notesCollectionRef, noteId));
     },
 
-    updateNote(id, content) {
-      let note = this.notes.find((note) => note.id === id)
-      note.content = content;
+    async updateNote(id, content) {
+      await updateDoc(doc(notesCollectionRef, id), {
+        content
+      });
     }
   }
 })
