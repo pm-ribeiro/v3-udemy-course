@@ -6,14 +6,18 @@
           {{ note.content }}
         </p>
 
-        <p class="has-text-right has-text-grey-light">
-          <small>
+        <div class="columns is-mobile has-text-grey-light">
+          <small class="column">
+            Created at: {{dateFormatted}}
+          </small>
+          <small class="column has-text-right">
             {{characterLength}}
           </small>
-        </p>
+        </div>
 
       </div>
     </div>
+
     <footer class="card-footer">
       <a
         @click.prevent="modals.deleteNote = true"
@@ -41,6 +45,7 @@
 
 /** imports */
 import { computed, reactive } from "vue";
+import { useDateFormat } from '@vueuse/core'
 import {useStoreNotes} from '@/stores/storeNotes';
 import DeleteNoteModal from '@/components/DeleteNoteModal.vue';
 
@@ -71,4 +76,13 @@ const characterLength = computed(
 const modals = reactive({
   deleteNote: false
 })
+
+// date formated
+const dateFormatted = computed(
+  () => {
+    let date = new Date(parseInt(props.note.date))
+    return useDateFormat(date, 'DD/MM/YYYY - HH:mm').value;
+  }
+)
+
 </script>
