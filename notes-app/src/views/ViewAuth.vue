@@ -19,17 +19,30 @@
           {{formTitle}}
         </div>
         <div class="field">
-          <label class="label">Name</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="e.g Alex Smith">
-          </div>
-        </div>
-
-        <div class="field">
           <label class="label">Email</label>
           <div class="control">
             <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
           </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input class="input" type="password" placeholder="Type a password">
+          </div>
+        </div>
+
+        <div class="field is-grouped is-grouped-right">
+          <p class="control">
+            <a class="button is-primary">
+              Submit
+            </a>
+          </p>
+          <p class="control">
+            <a class="button is-light">
+              Cancel
+            </a>
+          </p>
         </div>
       </div>
     </div>
