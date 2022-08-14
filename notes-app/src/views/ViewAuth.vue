@@ -14,15 +14,22 @@
     </div>
 
     <div class="card auth-form">
-      <div class="title has-text-centered">
-        {{formTitle}}
-      </div>
       <div class="card-content">
-        <div class="content">
-          Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
-          Donec id elit non mi porta gravida at eget metus. Cum sociis natoque
-          penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cra
-          s mattis consectetur purus sit amet fermentum.
+        <div class="title has-text-centered">
+          {{formTitle}}
+        </div>
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="e.g Alex Smith">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+          </div>
         </div>
       </div>
     </div>
