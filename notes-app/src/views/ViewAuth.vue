@@ -83,8 +83,6 @@ const onSubmit = () => {
   } else {
     storeAuth.loginUser(credentials);
   }
-
-  console.log('submit');
 }
 
 const credentials = reactive({

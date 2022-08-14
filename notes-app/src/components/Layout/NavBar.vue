@@ -29,7 +29,10 @@
         ref="navBarMenuRef"
       >
         <div class="navbar-start">
-          <button class="button is-small is-info mt-3 ml-3">
+          <button
+            class="button is-small is-info mt-3 ml-3"
+            @click="storeAuth.logoutUser()"
+          >
             Log out
           </button>
         </div>
@@ -61,6 +64,9 @@
 /** imports */
 import { ref } from 'vue';
 import { onClickOutside } from '@vueuse/core'
+import { useStoreAuth } from '@/stores/storeAuth';
+
+const storeAuth = useStoreAuth();
 
 /** mobile nav */
 const showMobileNav = ref(false),
