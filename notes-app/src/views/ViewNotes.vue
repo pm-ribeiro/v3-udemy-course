@@ -52,6 +52,11 @@ import NoteCard from '@/components/Notes/NoteCard.vue';
 import AddEditNote from '@/components/Notes/AddEditNote.vue';
 import {useStoreNotes} from '@/stores/storeNotes';
 import {useWatchCharacters} from '@/use/useWatchCharacters';
+import {onMounted} from 'vue';
+
+onMounted(() => {
+  storeNotes.getNotes()
+})
 
 /** store */
 const storeNotes = useStoreNotes();

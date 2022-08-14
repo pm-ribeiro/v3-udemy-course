@@ -1,17 +1,21 @@
 import { defineStore } from 'pinia'
 import { auth } from '@/js/firebase'
-import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "firebase/auth";
 
 
 export const useStoreAuth = defineStore('storeAuth', {
   state: () => {
     return {
-
+      user: {},
     }
   },
 
   getters: {
-
   },
 
   actions: {
@@ -51,6 +55,19 @@ export const useStoreAuth = defineStore('storeAuth', {
         // Sign-out successful.
       }).catch((error) => {
         // An error happened.
+      });
+    },
+
+    initUser() {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          this.user.id = user.uid;
+          this.user.email = user.email;
+          console.log('user...', user);
+        } else {
+          this.user = {};
+          console.log('user...', user);
+        }
       });
     }
   }
