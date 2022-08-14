@@ -18,45 +18,85 @@
         <div class="title has-text-centered">
           {{formTitle}}
         </div>
-        <div class="field">
-          <label class="label">Email</label>
-          <div class="control">
-            <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
-          </div>
-        </div>
 
-        <div class="field">
-          <label class="label">Password</label>
-          <div class="control">
-            <input class="input" type="password" placeholder="Type a password">
+        <form
+          @submit.prevent="onSubmit"
+        >
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input
+              class="input"
+              type="email"
+              placeholder="e.g. johndoe@gmail.com"
+              v-model="credentials.email"
+            >
+            </div>
           </div>
-        </div>
 
-        <div class="field is-grouped is-grouped-right">
-          <p class="control">
-            <a class="button is-primary">
-              Submit
-            </a>
-          </p>
-          <p class="control">
-            <a class="button is-light">
-              Cancel
-            </a>
-          </p>
-        </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input
+              class="input"
+              type="password"
+              placeholder="Type a password"
+              v-model="credentials.password"
+              >
+            </div>
+          </div>
+
+          <div class="field is-grouped is-grouped-right">
+            <p class="control">
+              <button class="button is-primary">
+                {{formTitle}}
+              </button>
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, reactive, computed } from 'vue';
 
 const register = ref(false);
 
 const formTitle = computed(() => {
   return register.value ? 'Register' : 'Login';
 });
+
+
+const onSubmit = () => {
+  if(!credentials.email || !credentials.password) {
+    alert('Enter email and password');
+    return;
+  }
+
+  if(register.value) {
+    registerUser();
+  } else {
+    loginUser();
+  }
+
+  console.log('submit');
+}
+
+const credentials = reactive({
+  email: '',
+  password: ''
+});
+
+const registerUser = () => {
+  console.log('register user');
+}
+
+const loginUser = () => {
+  console.log('loginUser user');
+}
+
 
 </script>
 
