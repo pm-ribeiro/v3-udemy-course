@@ -32,7 +32,7 @@
           <button
             v-if="storeAuth.user.id"
             class="button is-small is-info mt-3 ml-3"
-            @click="storeAuth.logoutUser()"
+            @click="logout"
           >
             Log out
           </button>
@@ -78,7 +78,6 @@ function closeMobileNav() {
   showMobileNav.value = false;
 }
 
-
 onClickOutside(navBarMenuRef, () => {
     closeMobileNav();
   },
@@ -89,6 +88,10 @@ onClickOutside(navBarMenuRef, () => {
   }
 );
 
+const logout = () => {
+  storeAuth.logoutUser();
+  showMobileNav.value = false;
+}
 
 </script>
 
