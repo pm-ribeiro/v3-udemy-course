@@ -93,7 +93,9 @@ export const useStoreNotes = defineStore('storeNotes', {
       notesCollectionRef = collection(
         db, 'users', storeAuth.user.id, 'notes'
       );
-      notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
+      notesCollectionQuery = query(
+        notesCollectionRef, orderBy("date", "desc")
+      );
       this.getNotes();
     }
   }
