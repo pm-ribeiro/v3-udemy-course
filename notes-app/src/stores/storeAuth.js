@@ -73,6 +73,7 @@ export const useStoreAuth = defineStore('storeAuth', {
           this.user = {};
           console.log('user...', user);
           this.router.replace('/auth');
+          storeNotes.clearNotes();
         }
       });
     }

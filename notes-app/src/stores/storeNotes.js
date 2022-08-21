@@ -80,6 +80,11 @@ export const useStoreNotes = defineStore('storeNotes', {
       });
     },
 
+    clearNotes() {
+      console.log('clearing notes...')
+      this.notes = [];
+    },
+
     /**
      * Initialize database refs
      */
