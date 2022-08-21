@@ -9,12 +9,12 @@ import {
   query,
   orderBy,
   addDoc
-} from "firebase/firestore"
-import {db} from '@/js/firebase'
+} from "firebase/firestore";
+import {db} from '@/js/firebase';
+import {useStoreAuth} from '@/stores/StoreAuth';
 
-const notesCollectionRef = collection(db, "notes");
-const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
-;
+
+let notesCollectionRef, notesCollectionQuery;
 
 // useStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
@@ -78,6 +78,18 @@ export const useStoreNotes = defineStore('storeNotes', {
       await updateDoc(doc(notesCollectionRef, id), {
         content
       });
+    },
+
+    /**
+     * Initialize database refs
+     */
+    init() {
+      const storeAuth = useStoreAuth();
+      notesCollectionRef = collection(
+        db, 'users', storeAuth.user.id, 'notes'
+      );
+      notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
+      this.getNotes();
     }
   }
 })
