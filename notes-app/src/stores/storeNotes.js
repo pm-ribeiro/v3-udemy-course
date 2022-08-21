@@ -9,7 +9,7 @@ import {
   query,
   orderBy,
   addDoc
-} from "firebase/firestore";
+} from 'firebase/firestore';
 import {db} from '@/js/firebase';
 import {useStoreAuth} from '@/stores/StoreAuth';
 
@@ -94,7 +94,7 @@ export const useStoreNotes = defineStore('storeNotes', {
         db, 'users', storeAuth.user.id, 'notes'
       );
       notesCollectionQuery = query(
-        notesCollectionRef, orderBy("date", "desc")
+        notesCollectionRef, orderBy('date', 'desc')
       );
       this.getNotes();
     }
