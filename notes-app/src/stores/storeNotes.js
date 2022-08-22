@@ -15,6 +15,7 @@ import {useStoreAuth} from '@/stores/StoreAuth';
 
 
 let notesCollectionRef, notesCollectionQuery;
+let getNotesSnapshot = null;
 
 // useStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
@@ -43,7 +44,12 @@ export const useStoreNotes = defineStore('storeNotes', {
   actions: {
     async getNotes() {
       this.notesLoaded = false;
-      onSnapshot(notesCollectionQuery, (querySnapshot) => {
+
+      if(getNotesSnapshot) {
+        getNotesSnapshot(); // unsibsribe from previous snapshot
+      }
+
+      getNotesSnapshot = onSnapshot(notesCollectionQuery, (querySnapshot) => {
         let notes = []
         querySnapshot.forEach((doc) => {
           let note = {
@@ -55,8 +61,8 @@ export const useStoreNotes = defineStore('storeNotes', {
         });
 
         this.notes = notes;
+        this.notesLoaded = true;
       });
-      this.notesLoaded = true;
     },
 
     async addNote(content) {
