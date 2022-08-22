@@ -45,10 +45,6 @@ export const useStoreNotes = defineStore('storeNotes', {
     async getNotes() {
       this.notesLoaded = false;
 
-      if(getNotesSnapshot) {
-        getNotesSnapshot(); // unsibsribe from previous snapshot
-      }
-
       getNotesSnapshot = onSnapshot(notesCollectionQuery, (querySnapshot) => {
         let notes = []
         querySnapshot.forEach((doc) => {
@@ -89,6 +85,9 @@ export const useStoreNotes = defineStore('storeNotes', {
     clearNotes() {
       console.log('clearing notes...')
       this.notes = [];
+      if(getNotesSnapshot) {
+        getNotesSnapshot(); // unsibsribe from previous snapshot
+      }
     },
 
     /**
