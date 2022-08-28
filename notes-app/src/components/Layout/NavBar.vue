@@ -15,6 +15,7 @@
           data-target="navbarBasicExample"
           @click.prevent="showMobileNav = !showMobileNav"
           ref="navBarBurguerRef"
+          v-if="storeAuth.user.id"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -27,6 +28,7 @@
         class="navbar-menu"
         :class="{ 'is-active': showMobileNav }"
         ref="navBarMenuRef"
+        v-if="storeAuth.user.id"
       >
         <div class="navbar-start">
           <button
