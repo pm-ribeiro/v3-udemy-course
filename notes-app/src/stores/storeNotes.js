@@ -47,6 +47,7 @@ export const useStoreNotes = defineStore('storeNotes', {
 
       getNotesSnapshot = onSnapshot(notesCollectionQuery, (querySnapshot) => {
         let notes = []
+        
         querySnapshot.forEach((doc) => {
           let note = {
             id: doc.id,
@@ -58,6 +59,8 @@ export const useStoreNotes = defineStore('storeNotes', {
 
         this.notes = notes;
         this.notesLoaded = true;
+      }, error => {
+        console.log('error message:', error.message)
       });
     },
 
@@ -85,6 +88,7 @@ export const useStoreNotes = defineStore('storeNotes', {
     clearNotes() {
       console.log('clearing notes...')
       this.notes = [];
+
       if(getNotesSnapshot) {
         getNotesSnapshot(); // unsibsribe from previous snapshot
       }
@@ -95,12 +99,15 @@ export const useStoreNotes = defineStore('storeNotes', {
      */
     init() {
       const storeAuth = useStoreAuth();
+
       notesCollectionRef = collection(
         db, 'users', storeAuth.user.id, 'notes'
       );
+
       notesCollectionQuery = query(
         notesCollectionRef, orderBy('date', 'desc')
       );
+
       this.getNotes();
     }
   }
